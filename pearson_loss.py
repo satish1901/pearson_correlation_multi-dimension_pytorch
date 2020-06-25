@@ -33,6 +33,7 @@ class Pearson_Correlation:
 		#dot product
 		r_num = torch.sum(torch.mul(xm,ym), dim=2, keepdim=True)
 		r_den = torch.norm(xm, 2, dim=2, keepdim=True) * torch.norm(ym, 2, dim=2, keepdim=True)
+		r_den[torch.where(r_den==0)] = 1.000 #avoid division by zero
 		r_val = r_num / r_den
 		
 		return r_val
